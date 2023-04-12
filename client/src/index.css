@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+:root {
+    --ihf-tp-q: #FF385C;
+  }
+
+input[type="email"], input[type="password"], input[type="text"]{
+    @apply w-full border my-1 py-2 px-3 rounded-xl;
+}
+
+button.primary {
+    @apply w-full bg-primary text-white py-2 px-3 rounded-xl mt-1 font-bold;
+}
+button.primary:hover, button.primary:focus{
+    @apply  bg-gradient-to-r from-primary to-tertiary transition ease-in-out delay-150;
+}
