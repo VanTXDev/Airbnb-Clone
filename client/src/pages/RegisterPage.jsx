@@ -1,21 +1,41 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-export default function LoginPage() {
+export default function RegisterPage() {
 	const [email, setEmail] = useState("");
 	const [phoneNumber, setphoneNumber] = useState("");
 	const [name, setName] = useState("");
 	const [password, setPassword] = useState("");
 	const [repassword, setRepassword] = useState("");
 
-	const handleSubmit = (e) => {
+	const registerUser = (e) => {
 		e.preventDefault();
-		console.log(email, password);
+		axios
+			.post("/register", {
+				email: email,
+				phoneNumber: phoneNumber,
+				name: name,
+				password: password,
+				repassword: repassword
+			})
+			.then((res) => {
+				console.log(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
+
 	return (
 		<div className="mt-4 grow flex items-center justify-around">
 			<div className="mb-64">
 				<h1 className="text-4xl text-center mb-4">Register</h1>
-				<form action="" className="max-w-md mx-auto">
+				<form
+					action=""
+					className="max-w-md mx-auto"
+					onSubmit={registerUser}
+				>
 					<input
 						type="text"
 						name="name"
@@ -51,7 +71,7 @@ export default function LoginPage() {
 						value={repassword}
 						onChange={(event) => setRepassword(event.target.value)}
 					/>
-					<button className="primary">Login</button>
+					<button className="primary">Register</button>
 					<div className="text-center my-2 space-x-0.5 text-gray-500">
 						<span>All ready a member?</span>
 						<Link to={"/login"} className="underline text-black">
